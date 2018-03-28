@@ -1,7 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 
 import { MenuBarComponent } from './menu-bar.component';
-import { AppMaterialModule } from '../app-material/app-material.module';
+import { AppMaterialModule } from '../../app-material/app-material.module';
 import { ActivatedRoute, Data, Params, Router } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
@@ -25,9 +25,22 @@ export class MockActivatedRoute {
 }
 
 describe('MenuBarComponent', () => {
+  let activeRoute: MockActivatedRoute;
+  let router: Router;
   let component: MenuBarComponent;
   let fixture: ComponentFixture<MenuBarComponent>;
-  const activeRoute: MockActivatedRoute;
+
+  let routes = [
+    'overview',
+    'batches',
+    'locations',
+    'curricula',
+    'trainers',
+    'profile',
+    'reports',
+    'settings',
+    'logout'
+  ];
 
   class MockRouter {
     navigate = jasmine.createSpy('navigate');
@@ -36,7 +49,7 @@ describe('MenuBarComponent', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [AppMaterialModule, RouterTestingModule.withRoutes([]), BrowserAnimationsModule],
+        imports: [AppMaterialModule, RouterTestingModule.withRoutes(this.routes), BrowserAnimationsModule],
         declarations: [MenuBarComponent],
         providers: [{ provide: ActivatedRoute, useValue: activeRoute }]
       }).compileComponents();
@@ -47,9 +60,20 @@ describe('MenuBarComponent', () => {
     fixture = TestBed.createComponent(MenuBarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    router.initialNavigation();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+  it('should navigate to overview', () => {
+    router.navigate(['overview']);
+    tick();
+    expect(location.pathname).toBe('/overview');
+  });
+  it('should navigate to profile', () => {
+    router.navigate(['profile']);
+    tick();
+    expect(location.pathname).toBe('/profile');
   });
 });

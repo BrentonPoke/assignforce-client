@@ -1,9 +1,9 @@
-import {AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
-import {MatSort, MatTableDataSource, MatCheckbox, MatSelect} from '@angular/material';
-import {Batch} from '../../model/batch';
-import {FormControl,ReactiveFormsModule} from '@angular/forms';
-import {DomSanitizer} from '@angular/platform-browser';
-import {MatIconRegistry} from '@angular/material';
+import { AfterViewInit, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { MatSort, MatTableDataSource, MatCheckbox, MatSelect } from '@angular/material';
+import { Batch } from '../../model/batch';
+import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+import { MatIconRegistry } from '@angular/material';
 
 @Component({
   selector: 'app-batches',
@@ -97,7 +97,33 @@ export class BatchesComponent implements OnInit, AfterViewInit {
     'EndDate',
     'Icons'
   ];
-  batchData = new MatTableDataSource(BatchData);
+  BatchData: Batch[] = [
+    {
+      name: 'batch1',
+      startDate: new Date('February 4, 2017 10:13:00'),
+      endDate: new Date('February 14, 2017 20:24:00'),
+      curriculum: 'Java',
+      focus: 'Microservices',
+      trainer: 'Steve',
+      cotrainer: 'Sarah',
+      location: 'here',
+      building: 'buildo',
+      room: 'roo'
+    },
+    {
+      name: 'batch2',
+      startDate: new Date('February 4, 2017 10:13:00'),
+      endDate: new Date('February 14, 2017 20:24:00'),
+      curriculum: 'Java',
+      focus: 'Microservices',
+      trainer: 'Steve',
+      cotrainer: 'Sarah',
+      location: 'here',
+      building: 'buildo',
+      room: 'roo'
+    }
+  ];
+  batchData = new MatTableDataSource(this.BatchData);
 
   @ViewChild(MatSort) sort: MatSort;
 

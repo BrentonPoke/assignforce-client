@@ -10,7 +10,7 @@ import { ReportsComponent } from './components/reports/reports.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LoginComponent } from './components/login/login.component';
 
-const appRoutes: Routes = [
+export const appRoutes: Routes = [
   {
     path: '',
     component: LoginComponent,
@@ -51,11 +51,7 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(appRoutes),
-  ],
-  exports: [
-    RouterModule
-  ]
+  imports: [RouterModule.forRoot(appRoutes)],
+  exports: [RouterModule]
 })
-export class AppRouting { }
+export class AppRouting {}
