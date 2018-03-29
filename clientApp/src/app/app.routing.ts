@@ -9,7 +9,9 @@ import { ProfileComponent } from './components/profile/profile.component';
 import { ReportsComponent } from './components/reports/reports.component';
 import { SettingsComponent } from './components/settings/settings.component';
 import { LoginComponent } from './components/login/login.component';
+import { UrlService } from './services/url/url.service';
 
+let urlService: UrlService = new UrlService();
 export const appRoutes: Routes = [
   {
     path: '',
@@ -17,35 +19,35 @@ export const appRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'overview',
+    path: urlService.getOverviewUrl(),
     component: OverviewComponent
   },
   {
-    path: 'batches',
+    path: urlService.getBatchesUrl(),
     component: BatchesComponent
   },
   {
-    path: 'locations',
+    path: urlService.getLocationsUrl(),
     component: LocationsComponent
   },
   {
-    path: 'curricula',
+    path: urlService.getCurriculaUrl(),
     component: CurriculaComponent
   },
   {
-    path: 'trainers',
+    path: urlService.getTrainersUrl(),
     component: TrainersComponent
   },
   {
-    path: 'profile',
+    path: urlService.getProfileUrl(),
     component: ProfileComponent
   },
   {
-    path: 'reports',
+    path: urlService.getReportsUrl(),
     component: ReportsComponent
   },
   {
-    path: 'settings',
+    path: urlService.getSettingsUrl(),
     component: SettingsComponent
   }
 ];
